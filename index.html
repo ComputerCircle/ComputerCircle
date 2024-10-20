@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Computer Circle - Courses</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f0f0f0;
+    }
+    header {
+      background-color: #333;
+      color: white;
+      padding: 1rem;
+      text-align: center;
+    }
+    nav {
+      display: flex;
+      justify-content: space-around;
+      background-color: #4CAF50;
+      padding: 10px 0;
+    }
+    nav a {
+      color: white;
+      text-decoration: none;
+      padding: 10px 20px;
+      font-weight: bold;
+    }
+    .section-container {
+      padding: 20px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    .course-section {
+      margin-bottom: 30px;
+    }
+    .course-section h2 {
+      background-color: #333;
+      color: white;
+      padding: 10px;
+    }
+    .course-list {
+      background-color: white;
+      padding: 15px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
+    .announcement {
+      background-color: yellow;
+      padding: 10px;
+      margin-bottom: 20px;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>Computer Circle (Lakhimpur Kheri)</h1>
+  <p>Your Path to Mastering Programming and Analytics</p>
+</header>
+
+<nav>
+  <a href="#python">Python</a>
+  <a href="#excel">Excel & VBA</a>
+  <a href="#dotnet">.NET with C#</a>
+  <a href="#data-analytics">Data Analytics</a>
+  <a href="#announcements">Announcements</a>
+</nav>
+
+<div class="section-container" id="course-sections">
+  <!-- Dynamic Course Sections Will Be Loaded Here -->
+</div>
+
+<div id="announcement-section">
+  <div class="announcement" id="announcement">
+    <!-- Dynamic Announcements Loaded Here -->
+  </div>
+</div>
+
+<footer>
+  <p>Contact us at 06394095327 or email at shaanmohammad2525@gmail.com</p>
+</footer>
+
+<script>
+  // Course data stored in a JavaScript object or fetched from external JSON
+  const courseData = {
+    "python": {
+      "title": "Python Programming",
+      "description": "Learn Python from basics to advanced topics including data processing, visualization with Pandas, NumPy, and web development using FastAPI."
+    },
+    "excel": {
+      "title": "Advanced Excel with VBA",
+      "description": "Become proficient in Excel automation and VBA macros for real-world tasks and reporting."
+    },
+    "dotnet": {
+      "title": ".NET with C#",
+      "description": "Master C# and .NET framework with practical project-based learning for professional development."
+    },
+    "data-analytics": {
+      "title": "Data Analytics",
+      "description": "Data analysis using PostgreSQL, SQL, and NoSQL databases like MongoDB."
+    }
+  };
+
+  const announcements = [
+    "📢 2-Day Free Zoom Demo Class! Contact for more details.",
+    "🚀 New Batch for Python Starting Next Week!",
+    "📅 Register now for the .NET with C# Project Development Course."
+  ];
+
+  // Function to load course sections dynamically
+  function loadCourseSections() {
+    const sectionContainer = document.getElementById('course-sections');
+    Object.keys(courseData).forEach((key) => {
+      const course = courseData[key];
+      const section = `
+        <div class="course-section" id="${key}">
+          <h2>${course.title}</h2>
+          <div class="course-list">${course.description}</div>
+        </div>
+      `;
+      sectionContainer.innerHTML += section;
+    });
+  }
+
+  // Function to load announcements dynamically
+  function loadAnnouncements() {
+    const announcementDiv = document.getElementById('announcement');
+    announcements.forEach((announcement) => {
+      announcementDiv.innerHTML += `<p>${announcement}</p>`;
+    });
+  }
+
+  // Load all sections and announcements on page load
+  window.onload = function() {
+    loadCourseSections();
+    loadAnnouncements();
+  };
+</script>
+
+</body>
+</html>
