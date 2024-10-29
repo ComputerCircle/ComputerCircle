@@ -9,25 +9,34 @@
       font-family: Arial, sans-serif;
       margin: 0;
       padding: 0;
-      background-color: #f0f0f0;
+      background: linear-gradient(to right, #1f1c2c, #928dab);
+      color: #f8f8f8;
+      overflow-x: hidden;
     }
     header {
-      background-color: #333;
-      color: white;
-      padding: 1rem;
+      background-color: #282828;
+      padding: 1.5rem;
       text-align: center;
+      color: #ffffff;
+      font-size: 1.8rem;
+      font-weight: bold;
     }
     nav {
       display: flex;
       justify-content: space-around;
-      background-color: #4CAF50;
       padding: 10px 0;
+      background-color: #4CAF50;
+      box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
     }
     nav a {
-      color: white;
+      color: #f8f8f8;
       text-decoration: none;
       padding: 10px 20px;
       font-weight: bold;
+      transition: color 0.3s ease;
+    }
+    nav a:hover {
+      color: #ffd700;
     }
     .section-container {
       padding: 20px;
@@ -35,23 +44,70 @@
       margin: 0 auto;
     }
     .course-section {
-      margin-bottom: 30px;
+      margin-bottom: 40px;
+      border-radius: 8px;
+      background: rgba(255, 255, 255, 0.1);
+      padding: 20px;
+      box-shadow: 0px 2px 15px rgba(0, 0, 0, 0.2);
     }
     .course-section h2 {
-      background-color: #333;
-      color: white;
-      padding: 10px;
-    }
-    .course-list {
-      background-color: white;
-      padding: 15px;
-      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      color: #ffd700;
+      font-size: 1.6rem;
+      margin-bottom: 10px;
     }
     .announcement {
-      background-color: yellow;
-      padding: 10px;
-      margin-bottom: 20px;
+      padding: 15px;
+      margin: 15px 0;
       text-align: center;
+      background-color: #ffd700;
+      color: #333;
+      font-weight: bold;
+      border-radius: 5px;
+    }
+    footer {
+      text-align: center;
+      padding: 20px;
+      background-color: #282828;
+      color: #f8f8f8;
+    }
+    footer a {
+      color: #ffd700;
+      text-decoration: none;
+      font-weight: bold;
+    }
+    #modal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.7);
+      justify-content: center;
+      align-items: center;
+      z-index: 1000;
+    }
+    #modal-content {
+      background: #1f1c2c;
+      padding: 2rem;
+      width: 90%;
+      max-width: 500px;
+      border-radius: 8px;
+      box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.3);
+      text-align: center;
+    }
+    #modal-content p {
+      font-size: 1.2rem;
+      margin: 1rem 0;
+    }
+    #close-modal {
+      background: #ff5c5c;
+      color: white;
+      padding: 0.5rem 1rem;
+      border: none;
+      cursor: pointer;
+      font-weight: bold;
+      border-radius: 5px;
     }
   </style>
 </head>
@@ -68,6 +124,7 @@
   <a href="#dotnet">.NET with C#</a>
   <a href="#data-analytics">Data Analytics</a>
   <a href="#announcements">Announcements</a>
+  <a href="#" onclick="openModal()">Register</a>
 </nav>
 
 <div class="section-container" id="course-sections">
@@ -81,11 +138,19 @@
 </div>
 
 <footer>
-  <a href = "https://www.instagram.com/a_computer_circle_/">Contact </a>
+  <a href="https://www.instagram.com/a_computer_circle_?utm_source=ig_web_button_share_sheet&igshid=ZDNlZDc0MzIxNw==">Follow us on Instagram</a>
 </footer>
 
+<div id="modal">
+  <div id="modal-content">
+    <h2>Register for Courses</h2>
+    <p>To register, please visit the following link:</p>
+    <p><a href="https://forms.office.com/Pages/ResponsePage.aspx?id=DQSIkWdsW0yxEjajBLZtrQAAAAAAAAAAAANAAoAz3vtUNzY4U1JZUEVZQ1kyUUhNRUZHREs2N05TUS4u" target="_blank">Computer Circle Registration Form</a></p>
+    <button id="close-modal" onclick="closeModal()">Close</button>
+  </div>
+</div>
+
 <script>
-  // Course data stored in a JavaScript object or fetched from external JSON
   const courseData = {
     "python": {
       "title": "Python Programming",
@@ -111,7 +176,6 @@
     "📅 Register now for the .NET with C# Project Development Course."
   ];
 
-  // Function to load course sections dynamically
   function loadCourseSections() {
     const sectionContainer = document.getElementById('course-sections');
     Object.keys(courseData).forEach((key) => {
@@ -126,7 +190,6 @@
     });
   }
 
-  // Function to load announcements dynamically
   function loadAnnouncements() {
     const announcementDiv = document.getElementById('announcement');
     announcements.forEach((announcement) => {
@@ -134,7 +197,14 @@
     });
   }
 
-  // Load all sections and announcements on page load
+  function openModal() {
+    document.getElementById('modal').style.display = 'flex';
+  }
+
+  function closeModal() {
+    document.getElementById('modal').style.display = 'none';
+  }
+
   window.onload = function() {
     loadCourseSections();
     loadAnnouncements();
